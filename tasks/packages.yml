@@ -1,0 +1,19 @@
+- name: Install emby repository
+  # Add source repository into sources list.
+  apt_repository:
+      repo: deb http://download.opensuse.org/repositories/home:/emby/xUbuntu_16.04/ /
+      filename: 'emby-server'
+      state: present
+  become: yes
+
+- name: Add emby the repository key to apt
+  apt_key:
+    url: "http://download.opensuse.org/repositories/home:emby/xUbuntu_16.04/Release.key"
+    state: present
+  become: yes
+
+- name: Update repositories cache and install "emby-server" package
+  apt:
+    name: emby-server
+    update_cache: yes
+    allow_unauthenticated: yes

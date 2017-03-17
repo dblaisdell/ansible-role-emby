@@ -1,0 +1,4 @@
+---
+
+- name: rofrantz.emby
+  version: origin/master

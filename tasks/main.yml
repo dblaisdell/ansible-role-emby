@@ -1,0 +1,6 @@
+---
+# tasks file for emby
+
+- name: Install emby-server
+  include: packages.yml
+
