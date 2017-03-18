@@ -6,7 +6,7 @@ before_install:
  - sudo apt-get install -qq python-apt python-pycurl
 
 # Use the new container infrastructure
-sudo: false
+sudo: true
 
 # Install ansible
 addons:
