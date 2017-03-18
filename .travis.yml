@@ -25,14 +25,11 @@ install:
   # Create ansible.cfg with correct roles_path
   - printf '[defaults]\nroles_path=../' >ansible.cfg
 
-before_script:
-  - ansible-galaxy install --role-file tests/vagrant/integration_requirements.yml
-
 script:
   - ansible-lint tasks/main.yml
 
   # Basic role syntax check
-  - ansible-playbook -i tests/vagrant/inventory tests/vagrant/test.yml --syntax-check
+  - ansible-playbook -i tests/vagrant/inventory tests/vagrant/test.yml --syntax-check --list-tasks
 
   # Run the role/playbook with ansible-playbook
   - ansible-playbook -i tests/vagrant/inventory tests/vagrant/test.yml --connection=local --sudo"
@@ -44,12 +41,14 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Make sure GitLab is running
+  # Make sure emby is running
   - >
     curl --insecure -s -o /dev/null -w "%{http_code}" https://localhost/users/password/new
     | grep -q '200'
     && (echo 'Status code 200 test: pass' && exit 0)
     || (echo 'Status code 200 test: fail' && exit 1)
+
+  - cat /etc/emby-server.conf
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

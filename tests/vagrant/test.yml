@@ -1,7 +1,7 @@
 ---
 
 - name: Test emby role
-  hosts: all
+  hosts: "{{hosts_group|default('all')}}"
   remote_user: root
 
   pre_tasks:
