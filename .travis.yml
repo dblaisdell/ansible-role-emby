@@ -1,12 +1,13 @@
 ---
 language: python
 python: "2.7"
-before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
 
 # Use the new container infrastructure
 sudo: true
+
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq python-apt python-pycurl
 
 # Install ansible
 addons:
@@ -31,7 +32,7 @@ script:
   - ansible-lint tasks/main.yml
 
   # Basic role syntax check
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+  - ansible-playbook tests/vagrant/test.yml -i tests/inventory --syntax-check
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
