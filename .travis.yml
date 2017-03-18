@@ -44,12 +44,16 @@ script:
 
   - cat /etc/emby-server.conf
 
+  - curl -w "%{http_code}" https://localhost:8096
+  
   # Make sure emby is running
   - >
-    curl --insecure -s -o /dev/null -w "%{http_code}" https://localhost:8920
+    curl -w "%{http_code}" https://localhost:8096
     | grep -q '302'
     && (echo 'Status code 302 test: pass' && exit 0)
     || (echo 'Status code 302 test: fail' && exit 1)
+
+  - service emby-server status | grep -q 'running' && (echo 'emby-server running' && exit 0) || (echo 'emby-server NOT running' && exit 1)
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
