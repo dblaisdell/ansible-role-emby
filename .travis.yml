@@ -32,7 +32,7 @@ script:
   - ansible-playbook -i tests/vagrant/inventory tests/vagrant/test.yml --syntax-check --list-tasks
 
   # Run the role/playbook with ansible-playbook
-  - ansible-playbook -i tests/vagrant/inventory tests/vagrant/test.yml --connection=local --sudo"
+  - ansible-playbook -i tests/vagrant/inventory tests/vagrant/test.yml --connection=local --sudo
 
   # Run the role/playbook again, checking to make sure it's idempotent
   - >
