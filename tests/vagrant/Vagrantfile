@@ -8,7 +8,8 @@ ansibleGalaxyRole = File.basename(File.expand_path("../..", Dir.pwd))
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-	config.vm.box = "geerlingguy/ubuntu1604"
+	#config.vm.box = "geerlingguy/ubuntu1604"
+	config.vm.box = "ubuntu/trusty64"
 
     config.vm.hostname = ansibleGalaxyRole
     config.vm.define ansibleGalaxyRole do |host|
