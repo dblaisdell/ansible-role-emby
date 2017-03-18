@@ -12,8 +12,8 @@ cache:
     - $HOME/buildout-cache
 
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq python-apt python-pycurl
 
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
 
@@ -54,13 +54,13 @@ script:
   - curl -w "%{http_code}" http://localhost:8096
 
   # Make sure emby is running
+  - service emby-server status | grep -q 'running' && (echo 'emby-server running' && exit 0) || (echo 'emby-server NOT running' && exit 1)
+
   - >
     curl -w "%{http_code}" http://localhost:8096
     | grep -q '302'
     && (echo 'Status code 302 test: pass' && exit 0)
     || (echo 'Status code 302 test: fail' && exit 1)
-
-  - service emby-server status | grep -q 'running' && (echo 'emby-server running' && exit 0) || (echo 'emby-server NOT running' && exit 1)
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
