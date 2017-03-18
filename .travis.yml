@@ -6,9 +6,16 @@ python: "2.7"
 sudo: true
 dist: trusty
 
+cache:
+  pip: true
+  directories:
+    - $HOME/buildout-cache
+
 before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq python-apt python-pycurl
+
+  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
 
 # Install ansible
 addons:
@@ -44,11 +51,11 @@ script:
 
   - cat /etc/emby-server.conf
 
-  - curl -w "%{http_code}" https://localhost:8096
-  
+  - curl -w "%{http_code}" http://localhost:8096
+
   # Make sure emby is running
   - >
-    curl -w "%{http_code}" https://localhost:8096
+    curl -w "%{http_code}" http://localhost:8096
     | grep -q '302'
     && (echo 'Status code 302 test: pass' && exit 0)
     || (echo 'Status code 302 test: fail' && exit 1)
