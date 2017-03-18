@@ -1,8 +1,10 @@
-rofrantz.emby
+Emby w/Ansible 
 =========
+[![Ansible Role](https://img.shields.io/ansible/role/16391.svg)](https://galaxy.ansible.com/rofrantz/emby/)
 [![Build Status](https://travis-ci.org/rofrantz/ansible-role-emby.svg?branch=master)](https://travis-ci.org/rofrantz/ansible-role-emby)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://galaxy.ansible.com/rofrantz/emby/)
 
-An Ansible role that installs Emby (https://emby.media/) on Ubuntu 16.04 
+An Ansible role that installs Emby (https://emby.media/) on Ubuntu machines via [Ansible Galaxy](https://galaxy.ansible.com/).
 
 Requirements
 ------------
