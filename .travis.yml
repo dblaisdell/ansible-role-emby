@@ -3,7 +3,7 @@ language: python
 python: "2.7"
 
 # Use the new container infrastructure
-sudo: false
+sudo: true
 dist: trusty
 
 cache:
@@ -12,8 +12,8 @@ cache:
     - $HOME/buildout-cache
 
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq python-apt python-pycurl
+#  - sudo apt-get update -qq
+#  - sudo apt-get install -qq
 
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
 
@@ -21,6 +21,8 @@ before_install:
 addons:
   apt:
     packages:
+    - python-apt
+    - python-pycurl
     - python-pip
 
 install:
