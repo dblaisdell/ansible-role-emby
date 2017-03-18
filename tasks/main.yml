@@ -15,7 +15,7 @@
 - name: Install {{ emby_service }}
   include: packages.yml
 
-- name: Update configuration file
+- name: Update {{ emby_service }} configuration file
   become: yes
   blockinfile:
     dest: /etc/{{ emby_service }}.conf
