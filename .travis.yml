@@ -32,7 +32,7 @@ script:
   - ansible-lint tasks/main.yml
 
   # Basic role syntax check
-  - ansible-playbook tests/vagrant/test.yml -i tests/inventory --syntax-check
+  - ansible-playbook tests/vagrant/test.yml -i tests/vagrant/inventory --syntax-check
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
