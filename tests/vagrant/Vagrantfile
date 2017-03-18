@@ -11,7 +11,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	#config.vm.box = "geerlingguy/ubuntu1604"
 	config.vm.box = "ubuntu/trusty64"
 
-    config.vm.hostname = ansibleGalaxyRole
+    config.vm.hostname = "ansible-role-galaxy.vm"
+    config.vm.network "forwarded_port", guest: 8096, host: 8096
+
     config.vm.define ansibleGalaxyRole do |host|
     end
 	config.vm.box_check_update = false
