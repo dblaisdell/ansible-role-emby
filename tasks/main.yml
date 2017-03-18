@@ -12,6 +12,9 @@
     group: "{{ emby_group }}"
     state: present
 
+- name: Install {{ emby_service }}
+  include: packages.yml
+
 - name: Update configuration file
   become: yes
   blockinfile:
@@ -19,7 +22,4 @@
     block: "{{ lookup('template', 'templates/emby_server_conf.j2') }}"
     marker: "#{mark} ANSIBLE MANAGED BLOCK"
   notify: restart emby
-
-- name: Install {{ emby_service }}
-  include: packages.yml
 
