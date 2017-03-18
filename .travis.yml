@@ -3,8 +3,15 @@ language: python
 python: "2.7"
 
 # Use the new container infrastructure
-sudo: true
+sudo: false
 dist: trusty
+
+addons:
+  apt:
+    packages:
+    - python-apt
+    - python-pycurl
+    - python-pip
 
 cache:
   pip: true
@@ -12,18 +19,7 @@ cache:
     - $HOME/buildout-cache
 
 before_install:
-#  - sudo apt-get update -qq
-#  - sudo apt-get install -qq
-
   - mkdir -p $HOME/buildout-cache/{eggs,downloads}
-
-# Install ansible
-addons:
-  apt:
-    packages:
-    - python-apt
-    - python-pycurl
-    - python-pip
 
 install:
   # Install ansible
