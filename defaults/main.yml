@@ -1,2 +1,6 @@
 ---
 # defaults file for emby
+emby_service: emby-server
+emby_user: emby
+emby_group: root
+

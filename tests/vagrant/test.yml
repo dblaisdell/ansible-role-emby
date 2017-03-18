@@ -13,13 +13,32 @@
       tags:
         - build
 
+  vars:
+      emby_user: test-emby
+      emby_group: test-root
+
   roles:
     - role: rofrantz.emby
       tags:
-        - always
+        - build
+        - emby
 
-#  post_tasks:
-#    - name: Nginx should be installed
-#      command: nginx -v
-#      tags:
-#        - assert
+  post_tasks:
+    - name: Check if {{ emby_service }} is running
+      command: systemctl status {{ emby_service }}
+      ignore_errors: yes
+      changed_when: false
+      register: service_status
+      tags:
+        - assert
+
+    - name: Report status of {{ emby_service }}
+      fail:
+        msg: |
+          Service {{ emby_service }} is not running.
+          Output of `systemctl status {{ emby_service }}`:
+          {{ service_status.stdout }}
+          {{ service_status.stderr }}
+      when: service_status | failed
+      tags:
+        - assert

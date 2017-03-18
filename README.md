@@ -19,7 +19,10 @@ hash_behaviour = merge
 
 Role Variables
 --------------
-N/A
+Available variables are listed below, along with default values (see `defaults/main.yml`):
+
+    emby_user: emby
+    emby_group: root
 
 Dependencies
 ------------

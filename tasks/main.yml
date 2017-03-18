@@ -1,6 +1,25 @@
 ---
 # tasks file for emby
 
-- name: Install emby-server
+# Add the user with a primary group
+- group:
+    name: "{{ emby_group }}"
+    state: present
+
+- user:
+    name: "{{ emby_user }}"
+    comment: "emby-server user"
+    group: "{{ emby_group }}"
+    state: present
+
+- name: Update configuration file
+  become: yes
+  blockinfile:
+    dest: /etc/{{ emby_service }}.conf
+    block: "{{ lookup('template', 'templates/emby_server_conf.j2') }}"
+    marker: "#{mark} ANSIBLE MANAGED BLOCK"
+  notify: restart emby
+
+- name: Install {{ emby_service }}
   include: packages.yml
 

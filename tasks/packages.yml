@@ -12,8 +12,8 @@
     state: present
   become: yes
 
-- name: Update repositories cache and install "emby-server" package
+- name: Update repositories cache and install {{ emby_service }} package
   apt:
-    name: emby-server
+    name: "{{ emby_service }}"
     update_cache: yes
     allow_unauthenticated: yes
