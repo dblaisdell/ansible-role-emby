@@ -1,5 +1,7 @@
-Role Name
+rofrantz.emby
 =========
+[![Build Status](https://travis-ci.org/rofrantz/ansible-role-emby.svg?branch=master)](https://travis-ci.org/rofrantz/ansible-role-emby)
+
 An Ansible role that installs Emby (https://emby.media/) on Ubuntu 16.04 
 
 Requirements
