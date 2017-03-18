@@ -4,15 +4,6 @@
   hosts: "{{hosts_group|default('all')}}"
   remote_user: root
 
-  pre_tasks:
-    - name: Update apt
-      become: yes
-      apt:
-        cache_valid_time: 1800
-        update_cache: yes
-      tags:
-        - build
-
   vars:
       emby_user: test-emby
       emby_group: test-root

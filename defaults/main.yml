@@ -1,5 +1,5 @@
 ---
 # defaults file for emby
 emby_user: emby
-emby_group: root
+emby_group: emby
 
